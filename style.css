@@ -1,0 +1,111 @@
+/* style.css – COFFINPOP styling */
+@import url('https://fonts.googleapis.com/css2?family=Unica+One&display=swap');
+
+body {
+  margin: 0;
+  background: linear-gradient(135deg, #0d0d0d, #1a001a);
+  color: #f5e6ff;
+  font-family: 'Unica One', sans-serif;
+  overflow-x: hidden;
+}
+
+header {
+  text-align: center;
+  padding: 2rem 1rem 1rem;
+  color: #ff80ff;
+  text-shadow: 0 0 15px #ff00ff;
+  font-size: 2.5rem;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: #ccc;
+}
+
+#stage {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem;
+  flex-wrap: wrap;
+}
+
+.coffin-creature {
+  width: 100px;
+  height: 100px;
+  background: #1e001e;
+  border: 3px solid #aa00aa;
+  border-radius: 20px;
+  box-shadow: 0 0 15px #aa00aa77;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  animation: float 3s ease-in-out infinite;
+  position: relative;
+}
+
+.coffin-creature.locked {
+  filter: grayscale(100%) brightness(0.3);
+  pointer-events: none;
+  box-shadow: none;
+  border-color: #444;
+}
+
+.coffin-creature.pop {
+  animation: pop 0.4s ease-out;
+}
+
+@keyframes pop {
+  0% { transform: scale(1) rotate(0); }
+  50% { transform: scale(1.4) rotate(6deg); }
+  100% { transform: scale(1) rotate(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.status {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  color: #bbb;
+}
+
+.task {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 1rem;
+  color: #aaa;
+}
+
+#band-loop {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.band-member {
+  display: inline-block;
+  margin: 0 10px;
+  font-size: 2rem;
+  animation: dance 1.6s infinite ease-in-out;
+}
+
+@keyframes dance {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #666;
+  padding: 1rem 0;
+}
