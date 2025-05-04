@@ -4,110 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>COFFINPOP: Crypt Beats Factory</title>
-  <link rel="icon" type="image/png" href="icon.png">
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Unica+One&display=swap');
-
-    body {
-      margin: 0;
-      background: linear-gradient(135deg, #0d0d0d, #1a001a);
-      color: #f5e6ff;
-      font-family: 'Unica One', sans-serif;
-      overflow-x: hidden;
-    }
-
-    header {
-      text-align: center;
-      padding: 2rem 1rem 1rem;
-      color: #ff80ff;
-      text-shadow: 0 0 15px #ff00ff;
-      font-size: 2.5rem;
-    }
-
-    #stage {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      padding: 2rem;
-      flex-wrap: wrap;
-    }
-
-    .coffin-creature {
-      width: 100px;
-      height: 100px;
-      background: #1e001e;
-      border: 3px solid #aa00aa;
-      border-radius: 20px;
-      box-shadow: 0 0 15px #aa00aa77;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 3rem;
-      cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      animation: float 3s ease-in-out infinite;
-      position: relative;
-    }
-
-    .coffin-creature.pop {
-      animation: pop 0.4s ease-out;
-    }
-
-    @keyframes pop {
-      0% { transform: scale(1) rotate(0); }
-      50% { transform: scale(1.4) rotate(6deg); }
-      100% { transform: scale(1) rotate(0); }
-    }
-
-    .status {
-      text-align: center;
-      font-size: 1.2rem;
-      margin-top: 1rem;
-      color: #bbb;
-    }
-
-    #band-loop {
-      text-align: center;
-      margin-top: 2rem;
-    }
-
-    .band-member {
-      display: inline-block;
-      margin: 0 10px;
-      font-size: 2rem;
-      animation: dance 1.6s infinite ease-in-out;
-    }
-
-    @keyframes dance {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-
-    footer {
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      text-align: center;
-      font-size: 0.9rem;
-      color: #666;
-      padding: 1rem 0;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-    COFFINPOP<br><span style="font-size: 1.2rem; color: #ccc;">Crypt Beats Factory</span>
+    COFFINPOP<br><span class="subtitle">Crypt Beats Factory</span>
   </header>
 
   <section id="stage">
-    <div class="coffin-creature" data-sound="ghostA">&#9760;</div>
-    <div class="coffin-creature" data-sound="ghostB">&#9785;</div>
-    <div class="coffin-creature" data-sound="ghostC">&#9790;</div>
-    <div class="coffin-creature" data-sound="ghostD">&#9766;</div>
-    <div class="coffin-creature" data-sound="ghostE">&#128128;</div>
+    <div class="coffin-creature" data-id="ghostA" data-sound="ghostA">&#9760;</div>
+    <div class="coffin-creature" data-id="ghostB" data-sound="ghostB">&#9785;</div>
+    <div class="coffin-creature locked" data-id="ghostC" data-sound="ghostC">&#9790;</div>
+    <div class="coffin-creature locked" data-id="ghostD" data-sound="ghostD">&#9766;</div>
+    <div class="coffin-creature locked" data-id="ghostE" data-sound="ghostE">&#128128;</div>
   </section>
 
-  <p class="status">Tap a coffin to wake it. It joins your band. Each one sings a unique sound.</p>
+  <p class="status">Tap a coffin to wake it. Each one has a request.</p>
+  <div class="task" id="taskText"></div>
 
   <div id="band-loop"></div>
 
@@ -121,37 +34,6 @@
   <audio id="ghostD" src="audio/ghostD.ogg" preload="auto"></audio>
   <audio id="ghostE" src="audio/ghostE.ogg" preload="auto"></audio>
 
-  <script>
-    const loopLength = 2000;
-    const band = [];
-    const bandLoop = document.getElementById('band-loop');
-
-    document.querySelectorAll(".coffin-creature").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const id = btn.dataset.sound;
-        const audio = document.getElementById(id);
-        if (!band.includes(id)) {
-          band.push(id);
-          const member = document.createElement('span');
-          member.classList.add('band-member');
-          member.textContent = btn.textContent;
-          bandLoop.appendChild(member);
-        }
-        btn.classList.remove('pop');
-        void btn.offsetWidth; // restart animation trick
-        btn.classList.add('pop');
-        audio.currentTime = 0;
-        audio.play();
-      });
-    });
-
-    setInterval(() => {
-      band.forEach(id => {
-        const audio = document.getElementById(id);
-        audio.currentTime = 0;
-        audio.play();
-      });
-    }, loopLength);
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
