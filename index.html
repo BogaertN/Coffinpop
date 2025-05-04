@@ -7,6 +7,7 @@
   <link rel="icon" type="image/png" href="icon.png">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Unica+One&display=swap');
+
     body {
       margin: 0;
       background: linear-gradient(135deg, #0d0d0d, #1a001a);
@@ -14,6 +15,7 @@
       font-family: 'Unica One', sans-serif;
       overflow-x: hidden;
     }
+
     header {
       text-align: center;
       padding: 2rem 1rem 1rem;
@@ -21,6 +23,7 @@
       text-shadow: 0 0 15px #ff00ff;
       font-size: 2.5rem;
     }
+
     #stage {
       display: flex;
       justify-content: center;
@@ -28,6 +31,7 @@
       padding: 2rem;
       flex-wrap: wrap;
     }
+
     .coffin-creature {
       width: 100px;
       height: 100px;
@@ -42,30 +46,43 @@
       cursor: pointer;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
       animation: float 3s ease-in-out infinite;
+      position: relative;
     }
-    .coffin-creature:active {
-      transform: scale(1.2) rotate(-5deg);
-      box-shadow: 0 0 25px #ff00ff;
+
+    .coffin-creature.pop {
+      animation: pop 0.4s ease-out;
     }
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
+
+    @keyframes pop {
+      0% { transform: scale(1) rotate(0); }
+      50% { transform: scale(1.4) rotate(6deg); }
+      100% { transform: scale(1) rotate(0); }
     }
+
     .status {
       text-align: center;
       font-size: 1.2rem;
       margin-top: 1rem;
       color: #bbb;
     }
+
     #band-loop {
       text-align: center;
       margin-top: 2rem;
     }
+
     .band-member {
       display: inline-block;
       margin: 0 10px;
       font-size: 2rem;
+      animation: dance 1.6s infinite ease-in-out;
     }
+
+    @keyframes dance {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
     footer {
       position: absolute;
       bottom: 0;
@@ -105,7 +122,7 @@
   <audio id="ghostE" src="audio/ghostE.ogg" preload="auto"></audio>
 
   <script>
-    const loopLength = 2000; // ms per loop cycle
+    const loopLength = 2000;
     const band = [];
     const bandLoop = document.getElementById('band-loop');
 
@@ -120,6 +137,9 @@
           member.textContent = btn.textContent;
           bandLoop.appendChild(member);
         }
+        btn.classList.remove('pop');
+        void btn.offsetWidth; // restart animation trick
+        btn.classList.add('pop');
         audio.currentTime = 0;
         audio.play();
       });
@@ -135,4 +155,3 @@
   </script>
 </body>
 </html>
-
