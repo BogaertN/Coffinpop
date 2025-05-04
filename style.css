@@ -1,4 +1,4 @@
-/* style.css – COFFINPOP styling */
+<style type="text/plain" id="style.css">
 @import url('https://fonts.googleapis.com/css2?family=Unica+One&display=swap');
 
 body {
@@ -15,7 +15,18 @@ header {
   color: #ff80ff;
   text-shadow: 0 0 15px #ff00ff;
   font-size: 2.5rem;
+  position: relative;
 }
+
+#score, #combo {
+  position: absolute;
+  top: 1rem;
+  font-size: 1.2rem;
+  color: #ffccff;
+}
+
+#score { left: 1rem; }
+#combo { right: 1rem; }
 
 .subtitle {
   font-size: 1.2rem;
@@ -31,19 +42,19 @@ header {
 }
 
 .coffin-creature {
-  width: 100px;
-  height: 100px;
-  background: #1e001e;
-  border: 3px solid #aa00aa;
-  border-radius: 20px;
-  box-shadow: 0 0 15px #aa00aa77;
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(#2a002a, #1e001e);
+  border: 4px solid #ff00ff;
+  border-radius: 25px;
+  box-shadow: 0 0 20px #ff00ff88;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 3rem;
+  font-size: 3.5rem;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  animation: float 3s ease-in-out infinite;
+  animation: float 2.5s ease-in-out infinite;
   position: relative;
 }
 
@@ -51,36 +62,56 @@ header {
   filter: grayscale(100%) brightness(0.3);
   pointer-events: none;
   box-shadow: none;
-  border-color: #444;
+  border-color: #666;
 }
 
 .coffin-creature.pop {
-  animation: pop 0.4s ease-out;
+  animation: pop 0.3s ease-out;
 }
 
 @keyframes pop {
   0% { transform: scale(1) rotate(0); }
-  50% { transform: scale(1.4) rotate(6deg); }
+  50% { transform: scale(1.5) rotate(8deg); }
   100% { transform: scale(1) rotate(0); }
 }
 
 @keyframes float {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+  50% { transform: translateY(-12px); }
 }
 
 .status {
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   margin-top: 1rem;
-  color: #bbb;
+  color: #ddd;
+  text-shadow: 0 0 10px #aa00aa;
 }
 
 .task {
   text-align: center;
   margin-top: 1rem;
-  font-size: 1rem;
-  color: #aaa;
+  font-size: 1.2rem;
+  color: #ccc;
+}
+
+#rhythm-bar {
+  width: 80%;
+  height: 10px;
+  background: #333;
+  margin: 1rem auto;
+  position: relative;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+#rhythm-indicator {
+  width: 10px;
+  height: 10px;
+  background: #ff00ff;
+  position: absolute;
+  left: 0;
+  box-shadow: 0 0 10px #ff00ff;
 }
 
 #band-loop {
@@ -90,22 +121,52 @@ header {
 
 .band-member {
   display: inline-block;
-  margin: 0 10px;
-  font-size: 2rem;
-  animation: dance 1.6s infinite ease-in-out;
+  margin: 0 15px;
+  font-size: 2.5rem;
+  animation: dance 1.4s infinite ease-in-out;
 }
 
 @keyframes dance {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-15px) rotate(4deg); }
+}
+
+#power-ups {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.power-up {
+  background: #aa00aa;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin: 0 0.5rem;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: 'Unica One', sans-serif;
+  font-size: 1rem;
+  transition: transform 0.2s;
+}
+
+.power-up:hover:not(:disabled) {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px #ff00ff;
+}
+
+.power-up:disabled {
+  background: #444;
+  cursor: not-allowed;
 }
 
 footer {
-  position: relative;
+  position: fixed;
   bottom: 0;
   width: 100%;
   text-align: center;
   font-size: 0.9rem;
   color: #666;
   padding: 1rem 0;
+  background: #0d0d0d88;
 }
+</style>
