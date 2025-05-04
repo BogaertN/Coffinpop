@@ -9,20 +9,29 @@
 <body>
   <header>
     COFFINPOP<br><span class="subtitle">Crypt Beats Factory</span>
+    <div id="score">Score: 0</div>
+    <div id="combo">Combo: x1</div>
   </header>
 
   <section id="stage">
-    <div class="coffin-creature" data-id="ghostA" data-sound="ghostA">&#9760;</div>
-    <div class="coffin-creature" data-id="ghostB" data-sound="ghostB">&#9785;</div>
-    <div class="coffin-creature locked" data-id="ghostC" data-sound="ghostC">&#9790;</div>
-    <div class="coffin-creature locked" data-id="ghostD" data-sound="ghostD">&#9766;</div>
-    <div class="coffin-creature locked" data-id="ghostE" data-sound="ghostE">&#128128;</div>
+    <div class="coffin-creature" data-id="ghostA" data-sound="ghostA">☠</div>
+    <div class="coffin-creature" data-id="ghostB" data-sound="ghostB">☹</div>
+    <div class="coffin-creature locked" data-id="ghostC" data-sound="ghostC">☾</div>
+    <div class="coffin-creature locked" data-id="ghostD" data-sound="ghostD">☦</div>
+    <div class="coffin-creature locked" data-id="ghostE" data-sound="ghostE">💀</div>
   </section>
 
-  <p class="status">Tap a coffin to wake it. Each one has a request.</p>
+  <p class="status">Tap coffins to wake ghosts and match the rhythm!</p>
   <div class="task" id="taskText"></div>
-
+  <div id="rhythm-bar">
+    <div id="rhythm-indicator"></div>
+  </div>
   <div id="band-loop"></div>
+
+  <div id="power-ups">
+    <button id="double-score" class="power-up" disabled>Double Score (0)</button>
+    <button id="auto-tap" class="power-up" disabled>Auto Tap (0)</button>
+  </div>
 
   <footer>
     Made for strange daughters and cooler planets.
@@ -33,7 +42,10 @@
   <audio id="ghostC" src="audio/ghostC.ogg" preload="auto"></audio>
   <audio id="ghostD" src="audio/ghostD.ogg" preload="auto"></audio>
   <audio id="ghostE" src="audio/ghostE.ogg" preload="auto"></audio>
+  <audio id="success" src="audio/success.ogg" preload="auto"></audio>
+  <audio id="fail" src="audio/fail.ogg" preload="auto"></audio>
 
   <script src="script.js"></script>
 </body>
 </html>
+
